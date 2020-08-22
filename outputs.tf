@@ -13,6 +13,16 @@ output "services" {
   }
 }
 
+output "dns_alias" {
+  description = "If the friendly_hostname input variable is set, this exports the hostname and Route53 zone id that should be used to point the friendly hostname at the registry API. If not using Route53 for DNS, you can alternatively create a regular CNAME record to the returned hostname. If friendly hostname is not enabled then this output is always null."
+  value = ( {
+      hostname        = aws_api_gateway_domain_name.main.regional_domain_name
+      route53_zone_id = aws_api_gateway_domain_name.main.regional_zone_id
+    }
+  )
+}
+
+
 output "rest_api_id" {
   description = "The id of the API Gateway REST API managed by this module."
   value       = aws_api_gateway_rest_api.root.id

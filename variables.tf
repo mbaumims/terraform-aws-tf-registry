@@ -5,7 +5,6 @@ variable "friendly_hostname" {
     host                = string
     acm_certificate_arn = string
   })
-  default = null
 }
 
 variable "name_prefix" {
